@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    <a :href="'a.html?h='+h">
+        哈哈哈哈哈哈哈哈哈哈哈
+    </a>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+var app = new Vue({
+    el: '#app',
+    data: {
+        h:0
+    },
+    created:function(){
+        this.h=window.location.search.substring(1).split("=")[1]
+    }
+})
+console.log(window.location.search.substring(1).split("=")[1])
+</script>
+</html>

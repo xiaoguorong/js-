@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+            <div>
+                <ul v-for="(item,index) in message" :key="index">
+                    <a :href="'b.html?height='+h"><li style="height:30px;">{{item}}</li></a>
+                </ul>
+            </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: [1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9],
+    h:0
+  },
+  created:function(){
+        let scrolltop=window.location.search.substring(1).split("=")[1];
+        if(scrolltop==0 || !scrolltop){
+            console.log("滚动")
+            window.onscroll= ()=>{
+                //变量t是滚动条滚动时，距离顶部的距离
+                var t = document.documentElement.scrollTop||document.body.scrollTop;
+                this.h=t
+            }
+        }else{
+            window.onload=()=>{
+                setTimeout(()=>{
+                    window.scrollBy(0,scrolltop)
+                    this.h= scrolltop;
+                    window.onscroll= ()=>{
+                        //变量t是滚动条滚动时，距离顶部的距离
+                        var t = document.documentElement.scrollTop||document.body.scrollTop;
+                        this.h=t
+                    }
+                },1000)
+            }
+        }
+    }
+})
+</script>
+</html>
